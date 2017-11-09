@@ -1,0 +1,65 @@
+
+<% include partials/header %>
+
+	<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+	<center><img id="background" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUTMHH3ey-bmyUQezdrrDAlPbWNjjHj3yI9d4GEKsQwh-aiQHq"></center>
+
+	
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h2>
+
+        <h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Buscar</b></h3>
+
+	        <ul style="list-style-type:circle">
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="buscarDatos">Datos</a> </b></li>
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"> <a href="buscarAntecedentes">Antecedentes</a> </b></li>
+			</ul>         
+
+		<h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Insertar Nuevo</b></h3>
+
+			<ul style="list-style-type:circle">
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="insertaPaciente">Nuevo Paciente</a> </b></li>
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"> <a href="insertaAntecedente">Nuevo Antecedente</a> </b></li>
+			</ul> 
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Historia Médica</h2>
+
+	        <h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Ver Historia</b></h3>
+
+	        <ul style="list-style-type:circle">
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="buscarHistoria">Buscar por cédula</a> </b></li>
+			</ul>
+
+        <h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Crear Nueva</b></h3>
+
+        	<ul style="list-style-type:circle">
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="crearInforme">Nuevo Informe</a> </b></li>
+			</ul>
+
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Citas</h2>
+
+		<h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Citas Disponibles</b></h3>
+
+			<ul style="list-style-type:circle">
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="citasporMedico">Disponibles por médico</a> </b></li>
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="citasportodoslosMedicos">Disponibles de todos los médicos</a> </b></li>
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="buscarCitaporFecha">Buscar por fecha y hora</a> </b></li>
+			</ul>
+
+		<h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Citas por Pacientes</b></h3>
+
+			<ul style="list-style-type:circle">
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="citasdePacientes">Ver citas</a> </b></li>
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="crearCitas">Solicitar cita</a> </b></li>
+			</ul>
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Facturas</h2>
+
+		<h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Facturas por pacientes</b></h3>
+
+			<ul style="list-style-type:circle">
+				<li><b style=" font-family:sans-serif; color: #000000; text-align:center;"><a href="buscarFactura">Buscar por cédula</a> </b></li>
+			</ul>
+
+
+<% include partials/footer %>

@@ -1,0 +1,29 @@
+<% include partials/header %>
+
+
+<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h2>
+
+
+
+ <table style="width:100%">
+			<tr> 
+			<th>Descripcion</th>
+			<th>Tipo</th>
+			</tr>
+
+       <% resultado.forEach(function(res){ %>
+
+
+			<tr>		
+			<td><%= res.Descripcion %></td>
+			<td><%= res.Tipo %></td>
+			</tr>
+
+			<%})%>
+
+		</table>
+
+
+<% include partials/footer %>

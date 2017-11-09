@@ -1,0 +1,26 @@
+0<% include partials/header %>
+
+
+	<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h2>
+
+
+
+	<div class="content">
+        <h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Buscar</b></h3>
+
+        <div class="right">
+            <div class="title"; style=" font-family:sans-serif; color: #ffffff; text-align:center;">Antecedentes</div>
+
+	            <form style=" text-align:center; font-family:sans-serif; color: gray; style="float: left"; method="post" action="/buscarAntecedentes">
+					<p> <b> Ingrese la cédula </b> </p>
+					<input type="text" name="cedula">
+					<input type="submit"; style="color: #ffffff; background-color:#000080; border: steelblue solid 1px;">
+				</form>
+    
+        </div>
+    </div> 
+
+
+<% include partials/footer %>
