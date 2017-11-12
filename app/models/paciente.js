@@ -1,7 +1,39 @@
+
+ var path = require('path');
+
+ var Sequelize = require('sequelize');
+var connection = new Sequelize('easymedic', 'root', 'password', {
+
+  dialect : 'mysql',
+
+  define : {
+
+     freezeTableName : true,
+     timestamps : false
+  }
+});
+
 module.exports = function(sequelize, DataTypes)
 {
 
+     var persona = connection.import(path.join(process.cwd(), 'app', 'models', 'persona'));
+     var tiposangre = connection.import(path.join(process.cwd(), 'app', 'models', 'tiposangre'));
+
 return sequelize.define('paciente',{
+
+
+
+     idPersona : {
+
+          type : DataTypes.INTEGER,
+          allowNull : false,
+          references : {
+
+               model : persona,
+               key : 'idPersona'
+          }
+     },
+
      
      idPaciente : {
 
@@ -11,66 +43,49 @@ return sequelize.define('paciente',{
           allowNull : false
      },
 
-     CedulaP : {
 
-          type: DataTypes.INTEGER,
-          unique : true
+     idTipoSangre : {
+
+          type : DataTypes.INTEGER,
+          allowNull : false,
+          references : {
+
+               model : tiposangre,
+               key : 'idTipoSangre'
+          }
      },
 
      SeguroSocial : {
 
           type : DataTypes.INTEGER,
-          unique : true
-          
-
-     },
-
-     PNombre :{
-
-          type : DataTypes.STRING
-     },
-
-
-     SNombre :{
-
-          type : DataTypes.STRING
-     },
-
-     PApellido : {
-
-          type : DataTypes.STRING
-     },
-
-     SApellido : {
-
-          type : DataTypes.STRING
-     },
-
-
-     Sexo : {
-
-          type : DataTypes.STRING(1)
-     },
-
-     TipoSangre : {
-
-          type : DataTypes.STRING(4)
+          allowNull : false
      },
 
      FechaNacimiento : {
 
-          type : DataTypes.STRING
+          type : DataTypes.DATE,
+          allowNull : false
+     },
+
+     LugarNacimiento : {
+
+          type : DataTypes.STRING,
+          allowNull : false
+     },
+
+     Direccion : {
+
+          type : DataTypes.STRING,
+          allowNull : false
      },
 
      EdoCivil : {
 
-          type : DataTypes.STRING(1)
-     },
+          type : DataTypes.STRING,
+          allowNull : false
+     }
 
-     Telefono : {
-
-          type : DataTypes.INTEGER(14)
-     },
+     
 })
 
 }

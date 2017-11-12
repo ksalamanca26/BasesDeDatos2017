@@ -1,6 +1,6 @@
   var path = require('path');
  var Sequelize = require('sequelize');
-var connection = new Sequelize('medictype', 'root', 'password', {
+var connection = new Sequelize('easymedic', 'root', 'password', {
 
   dialect : 'mysql',
 

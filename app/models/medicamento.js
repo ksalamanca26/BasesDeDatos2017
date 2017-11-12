@@ -12,7 +12,7 @@ idMedicamento : {
 	allowNull : false
 },
 
-Nombre : {
+NombreM : {
 
 	type : DataTypes.STRING
 },

@@ -1,9 +1,8 @@
-module.exports = function(sequelize, DataTypes)
-{
-	  var path = require('path');
+
+ var path = require('path');
 
  var Sequelize = require('sequelize');
-var connection = new Sequelize('medictype', 'root', 'password', {
+var connection = new Sequelize('easymedic', 'root', 'password', {
 
   dialect : 'mysql',
 
@@ -13,6 +12,10 @@ var connection = new Sequelize('medictype', 'root', 'password', {
      timestamps : false
   }
 });
+
+module.exports = function(sequelize, DataTypes)
+{
+	 
 
 var medico=connection.import(path.join(process.cwd(), 'app', 'models', 'medico'));
 var paciente=connection.import(path.join(process.cwd(), 'app', 'models', 'paciente'));
@@ -54,14 +57,9 @@ idPaciente : {
 
 Tipocita : {
 
-	type : DataTypes.STRING(1)
-
-
-},
-
-Fecha : {
-
 	type : DataTypes.STRING
+
+
 },
 
 Hora : {
@@ -69,9 +67,15 @@ Hora : {
 	type : DataTypes.STRING
 },
 
+
+Fecha : {
+
+	type : DataTypes.DATE
+},
+
 Estadocita : {
 
-	type :DataTypes.STRING(1)
+	type :DataTypes.STRING
 }
 
 

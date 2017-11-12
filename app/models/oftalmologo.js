@@ -12,28 +12,23 @@ var connection = new Sequelize('easymedic', 'root', 'password', {
   }
 });
 
+module.exports= function(sequelize, DataTypes){
 
-module.exports = function(sequelize, DataTypes)
-{
+	var medico = connection.import(path.join(process.cwd(), 'app', 'models', 'medico'));
 
-	var persona = connection.import(path.join(process.cwd(), 'app', 'models', 'persona'));
+return sequelize.define('oftalmologo',{
 
-return sequelize.define('medico',{
-
-	idPersona : {
+	idMedico : {
 
 		type : DataTypes.INTEGER,
-
 		allowNull : false,
-
 		references : {
-
-			model : persona,
-			key : 'idPersona'
+			model : medico,
+			key : 'idMedico'
 		}
 	},
 
-	idMedico : {
+	idOftalmologo : {
 
 		type : DataTypes.INTEGER,
 		primaryKey : true,
@@ -41,13 +36,13 @@ return sequelize.define('medico',{
 		allowNull : false
 	},
 
-	CarnetMedico : {
 
-		type : DataTypes.INTEGER,
-		unique : true,
-		allowNull : false
+	Retinologo : {
+
+		type: DataTypes.STRING,
+		
 	}
 })
 
-}
 
+}

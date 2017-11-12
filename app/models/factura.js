@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes)
 {
   var path = require('path');
 var Sequelize = require('sequelize');
-var connection = new Sequelize('medictype', 'root', 'password', {
+var connection = new Sequelize('easymedic', 'root', 'password', {
 
   dialect : 'mysql',
 
@@ -34,12 +34,12 @@ idCita : {
     }
 },
 
-MontoF : {
+FechaF : {
 
-	type : DataTypes.INTEGER
+  type : DataTypes.INTEGER
 },
 
-FechaF : {
+MontoF : {
 
 	type : DataTypes.INTEGER
 }
