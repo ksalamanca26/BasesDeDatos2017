@@ -1,0 +1,86 @@
+<% include partials/header %>
+
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center blue-text text-lighten-2">Easy Medic</h1>
+        <div class="row center">
+          <h5 class="header col s12  orange-text">Una moderna forma de gestionar tu salud</h5>
+        </div>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="medico.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Médicos</h2>
+
+	<table class="striped bordered">
+        <thead>
+          <tr>
+        <th>Cedula</th>
+				<th>Primer Nombre</th>
+				<th>Segundo Nombre</th>
+				<th>Primer Apellido</th>  
+				<th>Segundo Apellido</th> 	
+        <th>Sexo</th> 			
+				<th>Carnet</th> 
+        <th>Especialidad</th>
+        
+          </tr>
+        </thead>
+
+        <tbody>
+          <% resultado.forEach(function(res){ %>
+          <tr>
+            <td><%=res.Cedula%></td>
+            <td><%=res.PNombre%></td>
+            <td><%=res.SNombre%></td>
+            <td><%=res.PApellido%></td>
+            <td><%=res.SApellido%></td>
+            <td><%=res.Sexo%></td>
+            <td><%=res.CarnetMedico%></td>
+            <td><%=res.Especialidad%></td>
+          </tr>
+           <%})%>
+        </tbody>
+    </table>
+
+    <br><br><br><br>
+
+    <footer class="page-footer blue">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Company EasyMedic</h5>
+              <p class="grey-text text-lighten-4">Somos un equipo de estudiantes universitarios que desarrollaron este proyecto con 3 miembros al verdadero 100%, cualquier contribución es apreciada.</p>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+          </div>
+        </div>
+     </footer>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+<% include partials/footer %>

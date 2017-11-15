@@ -1,0 +1,42 @@
+<% include partials/header %>
+
+
+<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h2>
+
+
+
+ <table style="width:100%">
+			<tr>
+			<th>Cedula</th>
+			<th>Seguro</th> 
+			<th>Primer Nombre</th>
+			<th>Segundo Nombre</th>
+			<th>Primer Apellido</th>  
+			<th>Segundo Apellido</th> 
+			<th>Fecha Nacimiento</th>
+			<th>Sexo</th> 
+			<th>Tipo de Sangre</th>
+			<th>Edo Civil</th> 
+			<th>Telefono</th>   
+			</tr>
+
+
+			<tr>
+			<td><%= resultado.Cedula %></td>
+			<td><%= resultado.SeguroSocial %></td>			
+			<td><%= resultado.PNombre %></td>
+			<td><%= resultado.SNombre %></td>
+			<td><%= resultado.PApellido %></td>
+			<td><%= resultado.SApellido %></td>
+			<td><%= resultado.FechaNacimiento %></td>
+			<td><%= resultado.Sexo %></td>
+			<td><%= resultado.Descripcion %></td>
+			<td><%= resultado.EdoCivil %></td>
+			<td><%= resultado.Telefono_paciente %></td>
+			</tr>
+
+		</table>
+
+		<% include partials/footer %>

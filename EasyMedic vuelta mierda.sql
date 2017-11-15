@@ -39,14 +39,14 @@ LOCK TABLES `alergeno` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `antecendente_inf`
+-- Table structure for table `antecedente_inf`
 --
 
-DROP TABLE IF EXISTS `antecendente_inf`;
+DROP TABLE IF EXISTS `antecedente_inf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `antecendente_inf` (
-  `idAntecendente_Inf` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `antecedente_inf` (
+  `idAntecedente_Inf` int(11) NOT NULL AUTO_INCREMENT,
   `TipoAntecedente` varchar(10) NOT NULL,
   `NroIntervenciones` int(11) DEFAULT NULL,
   `Vacunado` varchar(45) DEFAULT NULL,
@@ -56,17 +56,18 @@ CREATE TABLE `antecendente_inf` (
   `Diabetico` varchar(5) DEFAULT NULL,
   `Formula` varchar(45) DEFAULT NULL,
   `TipoLentes` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`idAntecendente_Inf`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idAntecedente_Inf`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `antecendente_inf`
+-- Dumping data for table `antecedente_inf`
 --
 
-LOCK TABLES `antecendente_inf` WRITE;
-/*!40000 ALTER TABLE `antecendente_inf` DISABLE KEYS */;
-/*!40000 ALTER TABLE `antecendente_inf` ENABLE KEYS */;
+LOCK TABLES `antecedente_inf` WRITE;
+/*!40000 ALTER TABLE `antecedente_inf` DISABLE KEYS */;
+INSERT INTO `antecedente_inf` VALUES (1,'P',1,'No','No','No','No','No','-','-');
+/*!40000 ALTER TABLE `antecedente_inf` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -115,7 +116,7 @@ CREATE TABLE `cita` (
   KEY `medicoFK_3_idx` (`idMedico`),
   CONSTRAINT `medicoFK_4` FOREIGN KEY (`idMedico`) REFERENCES `medico` (`idMedico`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pacienteFK_1` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +140,7 @@ CREATE TABLE `disponibilidad` (
   `Dia` varchar(10) NOT NULL,
   `Hora` varchar(15) NOT NULL,
   PRIMARY KEY (`idDisponibilidad`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,6 +149,7 @@ CREATE TABLE `disponibilidad` (
 
 LOCK TABLES `disponibilidad` WRITE;
 /*!40000 ALTER TABLE `disponibilidad` DISABLE KEYS */;
+INSERT INTO `disponibilidad` VALUES (3,'Lunes','8:30am - 4:00pm');
 /*!40000 ALTER TABLE `disponibilidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,6 +285,7 @@ CREATE TABLE `i_pediatra` (
 
 LOCK TABLES `i_pediatra` WRITE;
 /*!40000 ALTER TABLE `i_pediatra` DISABLE KEYS */;
+INSERT INTO `i_pediatra` VALUES (1,2,60,180);
 /*!40000 ALTER TABLE `i_pediatra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,9 +307,9 @@ CREATE TABLE `informe` (
   PRIMARY KEY (`idInforme`),
   KEY `pacienteFK_2_idx` (`idPaciente`),
   KEY `antecedenteFK_idx` (`idAntecedente`),
-  CONSTRAINT `antecedenteFK` FOREIGN KEY (`idAntecedente`) REFERENCES `antecendente_inf` (`idAntecendente_Inf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `antecedenteFK` FOREIGN KEY (`idAntecedente`) REFERENCES `antecedente_inf` (`idAntecedente_Inf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pacienteFK_2` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -315,6 +318,7 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
+INSERT INTO `informe` VALUES (1,1,1,'Dolor de cabeza','Paciente con difteria','Echarse crema antes de dormir','2017-11-12');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,8 +358,9 @@ CREATE TABLE `medico` (
   `idMedico` int(11) NOT NULL AUTO_INCREMENT,
   `CarnetMedico` int(11) NOT NULL,
   PRIMARY KEY (`idMedico`),
-  UNIQUE KEY `CarnetMedico_UNIQUE` (`CarnetMedico`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `CarnetMedico_UNIQUE` (`CarnetMedico`),
+  KEY `personaFK_2_idx` (`idPersona`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,6 +369,7 @@ CREATE TABLE `medico` (
 
 LOCK TABLES `medico` WRITE;
 /*!40000 ALTER TABLE `medico` DISABLE KEYS */;
+INSERT INTO `medico` VALUES (2,1,74829267),(9,2,8737182);
 /*!40000 ALTER TABLE `medico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,7 +411,7 @@ CREATE TABLE `paciente` (
   `idPaciente` int(11) NOT NULL AUTO_INCREMENT,
   `idTipoSangre` int(11) NOT NULL,
   `SeguroSocial` int(11) NOT NULL,
-  `FechaNaciemiento` date NOT NULL,
+  `FechaNacimiento` date NOT NULL,
   `LugarNacimiento` varchar(45) NOT NULL,
   `Direccion` varchar(45) NOT NULL,
   `EdoCivil` varchar(10) NOT NULL,
@@ -414,7 +420,7 @@ CREATE TABLE `paciente` (
   KEY `tiposangreFK_idx` (`idTipoSangre`),
   CONSTRAINT `persona_FK1` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tiposangreFK` FOREIGN KEY (`idTipoSangre`) REFERENCES `tiposangre` (`idTipoSangre`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -423,6 +429,7 @@ CREATE TABLE `paciente` (
 
 LOCK TABLES `paciente` WRITE;
 /*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
+INSERT INTO `paciente` VALUES (1,1,1,653821,'1996-11-26','Caracas','Terrazas del Avila','S'),(18,2,1,5125651,'1960-08-15','Caracas','Las Mercedes','S'),(19,3,2,9876543,'1993-11-11','Su Casa','La Casona','S'),(20,4,2,7474743,'2017-11-12','Mi casa tambien','Mi casa','S');
 /*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,7 +447,7 @@ CREATE TABLE `pediatra` (
   PRIMARY KEY (`idPediatra`),
   KEY `medicoFK_2_idx` (`idMedico`),
   CONSTRAINT `medicoFK_2` FOREIGN KEY (`idMedico`) REFERENCES `medico` (`idMedico`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -449,6 +456,7 @@ CREATE TABLE `pediatra` (
 
 LOCK TABLES `pediatra` WRITE;
 /*!40000 ALTER TABLE `pediatra` DISABLE KEYS */;
+INSERT INTO `pediatra` VALUES (2,2,'-');
 /*!40000 ALTER TABLE `pediatra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -469,7 +477,7 @@ CREATE TABLE `persona` (
   `Sexo` varchar(45) NOT NULL,
   PRIMARY KEY (`idPersona`),
   UNIQUE KEY `CedulaP_UNIQUE` (`Cedula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -478,6 +486,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` VALUES (1,25504187,'Kevin','Eduardo','Salamanca','Gonzalez','M'),(9,13958754,'Nathan','Gampel','100%','Activo','M'),(11,20123567,'Rafael','Mainframe','Matienzo','IBM','M'),(14,5963672,'Alejandro','Carlos','Troncone','Herrera','M'),(15,523567,'Freddy','Jorge','Guevara','Ramos','M'),(18,4124141,'Maria','Pilar','Cuenca','ER','F'),(19,742258,'Pablo','Perez','Paco','Pedro','M'),(20,9494949,'Funciona','Por favor','Please','Bitte','M');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -494,7 +503,7 @@ CREATE TABLE `rel_antecedente_alergeno` (
   PRIMARY KEY (`idAntecedente`,`idAlergeno`),
   KEY `alergenoFK_idx` (`idAlergeno`),
   CONSTRAINT `alergenoFK` FOREIGN KEY (`idAlergeno`) REFERENCES `alergeno` (`idAlergeno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `antecedenteFK_2` FOREIGN KEY (`idAntecedente`) REFERENCES `antecendente_inf` (`idAntecendente_Inf`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `antecedenteFK_2` FOREIGN KEY (`idAntecedente`) REFERENCES `antecedente_inf` (`idAntecedente_Inf`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -582,6 +591,7 @@ CREATE TABLE `relacionmed_disp` (
 
 LOCK TABLES `relacionmed_disp` WRITE;
 /*!40000 ALTER TABLE `relacionmed_disp` DISABLE KEYS */;
+INSERT INTO `relacionmed_disp` VALUES (2,3);
 /*!40000 ALTER TABLE `relacionmed_disp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -607,6 +617,7 @@ CREATE TABLE `telefono_paciente` (
 
 LOCK TABLES `telefono_paciente` WRITE;
 /*!40000 ALTER TABLE `telefono_paciente` DISABLE KEYS */;
+INSERT INTO `telefono_paciente` VALUES (1,74832947),(4,12345567);
 /*!40000 ALTER TABLE `telefono_paciente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -621,7 +632,7 @@ CREATE TABLE `tiposangre` (
   `idTipoSangre` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`idTipoSangre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -630,6 +641,7 @@ CREATE TABLE `tiposangre` (
 
 LOCK TABLES `tiposangre` WRITE;
 /*!40000 ALTER TABLE `tiposangre` DISABLE KEYS */;
+INSERT INTO `tiposangre` VALUES (1,'O+'),(2,'O-');
 /*!40000 ALTER TABLE `tiposangre` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -642,4 +654,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-12  0:19:26
+-- Dump completed on 2017-11-13 20:28:38

@@ -10,12 +10,15 @@ var connection = new Sequelize('easymedic', 'root', 'password', {
      timestamps : false
   }
 });
-
+var Persona = connection.import(path.join(process.cwd(), 'app', 'models', 'persona'));
 var Medico=connection.import(path.join(process.cwd(), 'app', 'models', 'medico'));
 var Paciente=connection.import(path.join(process.cwd(), 'app', 'models', 'paciente'));
 var Cita = connection.import(path.join(process.cwd(), 'app', 'models', 'cita'));
 var Medicamento = connection.import(path.join(process.cwd(), 'app', 'models', 'medicamento'));
 var Factura = connection.import(path.join(process.cwd(), 'app', 'models', 'factura'));
+var TipoSangre = connection.import(path.join(process.cwd(), 'app', 'models', 'tiposangre'));
+var Telefono_paciente= connection.import(path.join(process.cwd(), 'app', 'models', 'telefono_paciente'));
+
 
 
 
@@ -24,7 +27,23 @@ module.exports = {
     main: function (req, res) {
 
     //try {
-      return res.render('index');
+      return res.render('PRINCIPAL');
+   // } catch (e) {
+    //  console.log("Error");
+    }
+    ,
+    VistaPacientes: function (req, res) {
+
+    //try {
+      res.render('VistaPacientes');
+   // } catch (e) {
+    //  console.log("Error");
+    }
+    ,
+    VistaMedicos: function (req, res) {
+
+    //try {
+      res.render('VistaMedicos');
    // } catch (e) {
     //  console.log("Error");
     }
@@ -35,34 +54,63 @@ module.exports = {
     } catch (e) {
       console.log("Error");
     }
-
-},
+    }
+    ,
 
   buscarDatosP : function(req,res){
     try{
 
-      Paciente.findOne({
+      Persona.findOne({
 
-  where : {
+        where : {
 
-    CedulaP : req.body.cedula
-  }
+          Cedula : req.body.cedula
+        }
+
+      }).then(persona => {
+
+        connection.query("SELECT persona.*, paciente.*, tiposangre.*, telefono_paciente.* FROM persona INNER JOIN paciente ON persona.idPersona = paciente.idPersona INNER JOIN tiposangre ON paciente.idTipoSangre = tiposangre.idTipoSangre INNER JOIN telefono_paciente ON paciente.idPaciente = telefono_paciente.idPaciente WHERE persona.idPersona= "+persona.dataValues.idPersona)
+        .then(json =>{
+
+      var respuesta=json[0];
+      console.log(json);
+
+          res.render('resultadoBuscarDatos', {
+
+            resultado : respuesta[0]
+
+          });
+        });
+
+      });
+
+          }catch(e){
+            console.log(e);
+          }
+  },
+
+  buscarMedicos : function(req,res){
+    try{
+
+      connection.query("SELECT persona.*, medico.*, especialidad.* FROM persona INNER JOIN medico ON persona.idPersona = medico.idPersona INNER JOIN especialidad ON medico.idEspecialidad = especialidad.idEspecialidad")
+      .then(json=>{
+
+        var respuesta=json[0];
+        console.log(respuesta);
+
+      res.render('resultadoBuscarMedicos', {
 
 
-}).then(paciente => {
+        resultado : respuesta
 
-res.render('resultadoBuscarDatos', {
-
-  resultado : paciente.dataValues
-})
-
-});
-
-    }catch(e){
-      console.log(e);
-    }
+      });
 
 
+      });
+
+          }catch(e){
+            console.log(e);
+          }
   },
 
   insertaPaciente : function(req, res){
@@ -78,25 +126,43 @@ res.render('resultadoBuscarDatos', {
     try{
 
 
-        Paciente.create({
+        Persona.create({
 
-          CedulaP : req.body.cedula,
-          SeguroSocial : req.body.Seguro,
+          Cedula : req.body.cedula,
           PNombre : req.body.PNombre,
           SNombre : req.body.SNombre,
           PApellido : req.body.PApellido,
           SApellido : req.body.SApellido,
-          Sexo : req.body.Sexo,
-          TipoSangre : req.body.TipoSangre,
-          FechaNacimiento : req.body.fechaNac,
-          EdoCivil : req.body.edoCivil,
-          Telefono : req.body.tlfn
-        }).then(function(){
+          Sexo : req.body.Sexo
+        }).then(persona => {
 
-          res.send("Se ha insertado un paciente");
+          TipoSangre.findOne({
+            where : {
+              Descripcion : req.body.TipoSangre
+            }
+          }).then(sangre=>{
 
-        })
-    }
+            connection.query("INSERT INTO paciente (idPersona, idTipoSangre, SeguroSocial, FechaNacimiento, LugarNacimiento, Direccion, EdoCivil) values ("
+              +persona.dataValues.idPersona+", "+sangre.dataValues.idTipoSangre+ ", "+req.body.Seguro+", '"+req.body.fechaNac+ "', '"+req.body.lugarNac+"', '"
+              +req.body.direccion+"', '"+req.body.edoCivil+"')").then(json=>{
+
+              var respuesta=json[0];
+              console.log(respuesta);
+
+              connection.query("INSERT INTO telefono_paciente (idPaciente, Telefono_paciente) values ("+respuesta+", "+req.body.tlfn+")").then(final=>{
+
+                res.send("Se ha insertado el paciente");
+              })
+
+
+
+            })
+
+            })
+
+          });
+
+        }
     catch(e){
       console.log(e);
     }
@@ -115,9 +181,275 @@ return res.render('buscarHistoria');
 
   buscarFacturaP: function(req,res){
 
+Factura.findOne({
+
+where : {
+
+  NroFactura : req.body.NroFactura
+}
+
+}).then(factura=>{
+
+console.log(factura);
+
+res.render('resultadoBuscarFactura',{
+
+resultado : factura
+
+})
+
+});
+
+  },
+
+  buscarAntecedentes : function(req,res){
+
+res.render('buscarAntecedentes')
+
+  },
+
+  buscarAntecedentesP : function(req,res){
 
 
+try{
+
+      Persona.findOne({
+
+  where : {
+
+    Cedula : req.body.cedula
   }
+
+}).then(persona => {
+
+  connection.query("SELECT antecedente_inf.* FROM persona INNER JOIN paciente ON persona.idPersona = paciente.idPersona INNER JOIN informe ON paciente.idPaciente = informe.idPaciente INNER JOIN antecedente_inf ON antecedente_inf.idAntecedente_inf = informe.idAntecedente WHERE persona.idPersona= "+persona.dataValues.idPersona+" LIMIT 1")
+  .then(json =>{
+
+var respuesta=json[0];
+
+    res.render('resultadoBuscarAntecedentes', {
+
+      resultado : respuesta[0]
+    });
+  });
+
+});
+
+    }catch(e){
+      console.log(e);
+    }
+
+
+  },
+
+  insertaAntecedente : function(req, res){
+
+    return res.render('insertaAntecedente');
+
+
+  },
+
+  insertaAntecedenteP : function(req,res){
+
+    try{
+
+        Antecedente.create({
+
+          Cedula : req.body.cedula,
+          PNombre : req.body.PNombre,
+          SNombre : req.body.SNombre,
+          PApellido : req.body.PApellido,
+          SApellido : req.body.SApellido,
+          Sexo : req.body.Sexo
+        }).then(persona => {
+
+          TipoSangre.findOne({
+            where : {
+              Descripcion : req.body.TipoSangre
+            }
+          }).then(sangre=>{
+
+            connection.query("INSERT INTO paciente (idPersona, idTipoSangre, SeguroSocial, FechaNacimiento, LugarNacimiento, Direccion, EdoCivil) values ("
+              +persona.dataValues.idPersona+", "+sangre.dataValues.idTipoSangre+ ", "+req.body.Seguro+", '"+req.body.fechaNac+ "', '"+req.body.lugarNac+"', '"
+              +req.body.direccion+"', '"+req.body.edoCivil+"')").then(json=>{
+
+              var respuesta=json[0];
+              console.log(respuesta);
+
+              connection.query("INSERT INTO telefono_paciente (idPaciente, Telefono_paciente) values ("+respuesta+", "+req.body.tlfn+")").then(final=>{
+
+                res.send("Se ha insertado el paciente");
+              })
+
+
+
+            })
+
+            })
+
+          });
+
+        }
+    catch(e){
+      console.log(e);
+    }
+  },
+
+  citasporMedico : function(req,res){
+
+    res.render('citasporMedico');
+  },
+
+  citasporMedicoP : function(req,res){
+
+
+    try{
+
+      Persona.findOne({
+
+  where : {
+
+    Cedula : req.body.cedula
+  }
+
+}).then(persona => {
+
+  connection.query("SELECT persona.*, disponibilidad.* FROM persona INNER JOIN medico ON persona.idPersona = medico.idPersona INNER JOIN relacionmed_disp ON medico.idMedico = relacionmed_disp.idMedico INNER JOIN disponibilidad ON relacionmed_disp.idDisponibilidad = disponibilidad.idDisponibilidad WHERE persona.idPersona="+persona.dataValues.idPersona)
+  .then(json =>{
+
+var respuesta=json[0];
+console.log(respuesta[0]);
+
+    res.render('resultadoCitasPorMedico', {
+
+      resultado : respuesta
+    });
+  });
+
+});
+
+    }catch(e){
+      console.log(e);
+    }
+
+
+  },
+
+  citasdePacientes : function(req,res){
+
+    res.render('citasdePacientes');
+  },
+
+  citasdePacientesP: function (req,res){
+
+    try{
+
+      Persona.findOne({
+
+  where : {
+
+    Cedula : req.body.cedula
+  }
+
+}).then(persona => {
+
+ Paciente.findOne({
+
+  where :{
+
+    idPersona : persona.dataValues.idPersona
+  }
+ }).then(paciente =>{
+
+connection.query("SELECT persona.*, medico.*, cita.* from cita inner join medico on cita.idMedico = medico.idMedico inner join persona on medico.idPersona = persona.idPersona where cita.idPaciente="+paciente.dataValues.idPaciente)
+.then(json=>{
+
+var respuesta=json[0];
+console.log(respuesta);
+
+res.render('resultadoCitasDePacientes',{
+
+
+resultado : respuesta
+
+});
+
+})
+
+ })
+
+});
+
+    }catch(e){
+      console.log(e);
+    }
+
+  },
+
+  crearCitas : function(req, res){
+
+    return res.render('crearCitas');
+
+
+  },
+
+  crearCitasP : function(req,res){
+
+    Persona.findOne({
+
+      where : {
+
+        Cedula : req.body.cedPaciente
+
+      }
+
+    }).then(persona1=>{
+
+      Persona.findOne({
+
+        where : {
+
+          Cedula : req.body.cedMedico
+        }
+      }).then(persona2=>{
+
+
+        Paciente.findOne({
+
+          where : {
+
+            idPersona : persona1.dataValues.idPersona
+          }
+
+        }).then(paciente=>{
+
+          Medico.findOne({
+
+            where :{
+
+              idPersona : persona2.dataValues.idPersona
+            }
+          }).then(medico=>{
+
+            connection.query("INSERT INTO cita(idMedico, idPaciente, TipoCita, Hora, Fecha, EstadoCita) VALUES ("+medico.dataValues.idMedico+", "+paciente.dataValues.idPaciente+", '"+req.body.tipocita+"', '"+req.body.hora+"', '"+req.body.fecha+"', '"+req.body.edoCita+"')")
+            .then(json=>{
+
+              var respuesta=json[0];
+            
+
+              res.send("Cita creada exitosamente");
+
+            })
+          })
+        })
+
+      })
+
+
+    });
+
+
+  },
 
 
 

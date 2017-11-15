@@ -1,0 +1,33 @@
+<% include partials/header %>
+
+
+<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Citas</h2>
+
+
+
+ <table style="width:100%">
+			<tr> 
+			<th>Nombre Médico</th>
+			<th>Apellido Médico</th>
+			<th>Día</th>
+			<th>Hora</th>
+			</tr>
+
+  
+
+
+			<tr>		
+			<td><%= resultado.PNombre %></td>
+			<td><%= resultado.PApellido %></td>
+			<td><%= resultado.Dia %></td>
+			<td><%= resultado.Hora %></td>
+			</tr>
+
+			
+
+		</table>
+
+
+<% include partials/footer %>

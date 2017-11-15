@@ -1,0 +1,35 @@
+
+<% include partials/header %>
+
+	<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+
+		<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Citas</h2>
+
+			<h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Citas Disponibles</b></h3>
+
+				<table style="width:100%">
+					<tr> 
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th>Nombre Médico</th>
+					<th>Apellido Médico</th>
+					<th>Disponibilidad</th>
+					</tr>
+
+		       		<% resultado.forEach(function(res){ %>
+
+
+					<tr>		
+					<td><%= res.Fecha %></td>
+					<td><%= res.Hora %></td>
+					<td><%= res.PNombre %></td>
+					<td><%= res.PApellido %></td>
+					<td><%= res.Disponibilidad %></td>
+					</tr>
+
+					<%})%>
+
+				</table>
+
+
+<% include partials/footer %>

@@ -1,38 +1,9 @@
 
- var path = require('path');
-
- var Sequelize = require('sequelize');
-var connection = new Sequelize('easymedic', 'root', 'password', {
-
-  dialect : 'mysql',
-
-  define : {
-
-     freezeTableName : true,
-     timestamps : false
-  }
-});
 
 module.exports = function(sequelize, DataTypes)
 {
 
-     var persona = connection.import(path.join(process.cwd(), 'app', 'models', 'persona'));
-     var tiposangre = connection.import(path.join(process.cwd(), 'app', 'models', 'tiposangre'));
-
 return sequelize.define('paciente',{
-
-
-
-     idPersona : {
-
-          type : DataTypes.INTEGER,
-          allowNull : false,
-          references : {
-
-               model : persona,
-               key : 'idPersona'
-          }
-     },
 
      
      idPaciente : {
@@ -41,18 +12,6 @@ return sequelize.define('paciente',{
           primaryKey : true,
           autoIncrement : true,
           allowNull : false
-     },
-
-
-     idTipoSangre : {
-
-          type : DataTypes.INTEGER,
-          allowNull : false,
-          references : {
-
-               model : tiposangre,
-               key : 'idTipoSangre'
-          }
      },
 
      SeguroSocial : {

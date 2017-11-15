@@ -1,33 +1,90 @@
+
 <% include partials/header %>
 
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
 
-<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 
-	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Historia Médica</h2>
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center blue-text text-lighten-2">Easy Medic</h1>
+        <div class="row center">
+          <h5 class="header col s12  orange-text">Una moderna forma de gestionar tu salud</h5>
+        </div>
 
+      </div>
+    </div>
+    <div class="parallax"><img src="medico.jpg" alt="Unsplashed background img 1"></div>
+  </div>
 
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h2>
 
- <table style="width:100%">
-			<tr> 
-			<th>Nombre</th>
-			<th>Fecha</th>
-			<th>Diagnostico</th>
-			<th>Instrucciones</th>
-			</tr>
+	<table class="striped bordered">
+        <thead>
+          <tr>
+              	<th>Tipo de Antecedente</th>
+				<th>Vacuna</th> 
+				<th>Asmático</th>
+				<th>Alergia</th>
+				<th>Fuma</th>  
+				<th>Diabético</th> 
+				<th>Hipertenso</th>
+				<th>Tipo de lentes</th>
+				<th>Fórmula</th> 
+				<th>Intervenciones quirúrgica</th> 
+ 
+          </tr>
+        </thead>
 
-       <% resultado.forEach(function(res){ %>
+        <tbody>
+          <tr>
+            <td>resultado.Cedula</td>
+            <td>Eclair</td>
+            <td>$0.87</td>
+          </tr>
+          <tr>
+            <td>Alan</td>
+            <td>Jellybean</td>
+            <td>$3.76</td>
+          </tr>
+          <tr>
+            <td>Jonathan</td>
+            <td>Lollipop</td>
+            <td>$7.00</td>
+          </tr>
+        </tbody>
+    </table>
 
+    <footer class="page-footer blue">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Company EasyMedic</h5>
+              <p class="grey-text text-lighten-4">Somos un equipo de estudiantes universitarios que desarrollaron este proyecto con 3 miembros al verdadero 100%, cualquier contribución es apreciada.</p>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+          </div>
+        </div>
+     </footer>
 
-			<tr>		
-			<td><%= res.PNombre %></td>
-			<td><%= res.Fecha %></td>
-			<td><%= res.Diagnostico %></td>
-			<td><%= res.Instrucciones %></td>
-			</tr>
-
-			<%})%>
-
-		</table>
-
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
 <% include partials/footer %>

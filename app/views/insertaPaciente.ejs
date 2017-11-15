@@ -1,6 +1,33 @@
+
 <% include partials/header %>
 
-<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center blue-text text-lighten-2">Easy Medic</h1>
+        <div class="row center">
+          <h5 class="header col s12  orange-text">Una moderna forma de gestionar tu salud</h5>
+        </div>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="medico.jpg" alt="Unsplashed background img 1"></div>
+  </div>
 
 <h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h2>
 
@@ -10,24 +37,107 @@
 			<form action="/insertaPaciente" method="post">
 			<fieldset>
 			<legend> <b> Nuevo Paciente </b></legend>
-			<div>
-				<label>Cedula</label><input type="text" name="cedula">&nbsp&nbsp&nbsp&nbsp<label>Seguro Social</label><input type="text" name="Seguro" ><br />
+			
+				  <div class="row">
+				    <form class="col s12">
+				      <div class="row">
+				        <div class="input-field col s3">
+				          <label for="PNombre">Primer Nombre</label>
+				          <input name="PNombre" type="text" class="validate">				          
+				        </div>
+				        <div class="input-field col s3">
+				          <label for="SNombre">Segundo Nombre</label>
+				          <input name="SNombre" type="text" class="validate">				          
+				        </div>
+				        <div class="input-field col s3">
+				          <input name="PApellido" type="text" class="validate">
+				          <label for="PApellido">Primer Apellido</label>
+				        </div>				
+				        <div class="input-field col s3">
+				          <input name="SApellido" type="text" class="validate">
+				          <label for="SApellido">Segundo Apellido</label>
+				        </div>
+				      </div>
+				      
+				      <div class="row">
+				        <div class="input-field col s3">
+				          <input name="cedula" type="text" class="validate">
+				          <label for="cedula">Cedula</label>
+				        </div>
+				        <div class="input-field col s3">
+				          <input name="Seguro" type="text" class="validate">
+				          <label for="Seguro">Seguro</label>
+				        </div>
+				        <div class="input-field col s3">
+				          <input name="fechaNac" type="text" class="validate">
+				          <label for="fechaNac">Fecha Nacimiento</label>
+				        </div>				
+				        <div class="input-field col s3">
+				          <input name="lugarNac" type="text" class="validate">
+				          <label for="lugarNac">Lugar Nacimiento</label>
+				        </div>
+				      </div>
 
-				<label >Primer Nombre</label><input type="text" name="PNombre">&nbsp&nbsp&nbsp&nbsp<label>Sexo</label><input type="text" name="Sexo" ><br />
+				      <div class="row">
+				        <div class="input-field col s4">
+				          <input name="Sexo" type="text" class="validate">
+				          <label for="Sexo">Sexo</label>
+				        </div>				
+				        <div class="input-field col s4">
+				          <input name="TipoSangre" type="text" class="validate">
+				          <label for="TipoSangre">Tipo de Sangre</label>
+				        </div>
+				        <div class="input-field col s4">
+				          <input name="edoCivil" type="text" class="validate">
+				          <label for="edoCivil">Estado Civil</label>
+				        </div>
+				      </div>
 
-				<label>Segundo Nombre</label><input type="text" name="SNombre">&nbsp&nbsp&nbsp&nbsp<label>Tipo de Sangre</label><input type="text" name="TipoSangre" ><br />
+				      <div class="row">
+				        <div class="input-field col s6">
+				          <input name="direccion" type="text" class="validate">
+				          <label for="direccion">Dirección</label>
+				        </div>				
+				        <div class="input-field col s6">
+				          <input name="tlfn" type="text" class="validate">
+				          <label for="tlfn">Teléfono</label>
+				        </div>				        
+				      </div>
+				      <div class="row center">
+				        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+					    	<i class="material-icons right">send</i>
+					  	</button>				        
+				      </div>
+				      
+				    </form>
+				  </div>
 
-				<label >Primer Apellido</label><input type="text" name="PApellido">&nbsp&nbsp&nbsp&nbsp<label>Estado Civil</label><input type="text" name="edoCivil" ><br />
 
-				<label >Segundo Apellido</label><input type="text" name="SApellido">&nbsp&nbsp&nbsp&nbsp<label>Teléfono</label><input type="text" name="tlfn"> <br />
 
-				<label>Fecha de Nacimiento</label><input type="text" name="fechaNac">&nbsp&nbsp&nbsp&nbsp
 
-				
-				<input type="submit" value="Procesar" /><br />
-			</div>
 			</fieldset>
 			</form>
 		</div>
+
+		<footer class="page-footer blue">
+		    <div class="container">
+		      <div class="row">
+		        <div class="col l6 s12">
+		          <h5 class="white-text">Company EasyMedic</h5>
+		          <p class="grey-text text-lighten-4">Somos un equipo de estudiantes universitarios que desarrollaron este proyecto con 3 miembros al verdadero 100%, cualquier contribución es apreciada.</p>
+		      </div>
+		    </div>
+		    <div class="footer-copyright">
+		      <div class="container">
+		      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+		      </div>
+		    </div>
+		 </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
 <% include partials/footer %>

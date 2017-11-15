@@ -22,6 +22,14 @@ module.exports = app;
 //Rutas de mi aplicación
 require(path.join(process.cwd(), 'app', 'routes'))();
 
+
+/*app.get("/",function (req, res) {
+
+    //try {
+      return res.render('resultadoBuscarDatos');
+   // } catch (e) {
+    //  console.log("Error");
+    });*/
 //Ejecuto el servidor
 app.listen(8080);
 

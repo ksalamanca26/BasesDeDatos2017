@@ -1,0 +1,26 @@
+<% include partials/header %>
+
+<h1 style="background-color:DodgerBlue; font-family:Oswald,sans-serif; color: #ffffff; text-align:center;">Easy Medic</h1>
+
+	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Citas</h2>
+
+		<h3 style=" font-family:sans-serif; color: DodgerBlue;"><b>Citas por Pacientes</b></h3>
+
+			<div id="form_uno">
+				<form action="#">
+				<fieldset>
+				<legend> <b> Nueva Cita </b></legend>
+				<div>
+					<label>Cédula del médico</label><input type="text" name="cedMedico">&nbsp&nbsp&nbsp&nbsp<label>Fecha</label><input type="text" name="fecha" ><br />
+
+					<label >Cédula del paciente</label><input type="text" name="cedPaciente">&nbsp&nbsp&nbsp&nbsp<label>Hora</label><input type="text" name="hora" ><br />
+
+					<label>Tipo de cita (normal o emergencia)</label><input type="text" name="tipoCita">&nbsp&nbsp&nbsp&nbsp<label>Estado de la cita (pendiente)</label><input type="text" name="estado" ><br />
+				
+					<input type="submit" value="Procesar" /><br />
+				</div>
+				</fieldset>
+				</form>
+			</div>
+
+<% include partials/footer %>

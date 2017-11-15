@@ -10,7 +10,7 @@ module.exports = {
     domain: 'localhost',
     name: 'medictype',
     user: "root",
-    password: "password",
+    password: "pink88pink",
   },
 
 
