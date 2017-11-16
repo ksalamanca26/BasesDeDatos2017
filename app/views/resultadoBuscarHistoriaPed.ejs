@@ -39,30 +39,37 @@
             <th>Tipo de antecedente</th>       
     				<th>Vacuna</th> 
     				<th>Asmático</th>
-    				<th>Intervenciones quirúrgicas</th> 
-            <th>Alérgenos</th>
+    				<th>Intervenciones quirúrgicas</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td>PERSONAL</td>
-            <td>Si</td>
-            <td>No</td>
-            <td>4</td>
-            <td>YODO BLABLA</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
+            <td><%= resultado1[0].TipoAntecedente %></td>
+            <td><%= resultado1[0].Vacuna %></td>
+            <td><%= resultado1[0].Asmatico %></td>
+            <td><%= resultado1[0].NroIntervenciones %></td>
           </tr>
         </tbody>
+    </table>
+    <br><br>
+
+    <p><b>Alérgenos</b></p>
+
+    <table class="striped bordered">
+      <thead>
+        <tr>
+          <th>Alérgeno</th>
+        </tr>
+      </thead>
+<% resultado1.forEach(function(res){ %>
+        <tbody>
+        <tr>
+        <td><%= res.Descripcion %></td>
+        </tr>
+
+        </tbody>
+        <%})%>
     </table>
 
     <br><br>
@@ -81,25 +88,21 @@
           </tr>
         </thead>
 
+<% resultado2.forEach(function(res){ %>
         <tbody>
           <tr>
-            <td>PERSONAL</td>
-            <td>Si</td>
-            <td>No</td>
-            <td>4</td>
-            <td>YODO BLABLA</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
+            <td><%= res.Fecha %></td>
+            <td><%= res.Peso %></td>
+            <td><%= res.Altura %></td>
+            <td><%= res.Sintoma %></td>
+            <td><%= res.Diagnostico %></td>
+            <td><%= res.NombreE %></td>
+            <td><%= res.Instruccion %></td>
+            <td><%= res.NombreM %></td>
+
           </tr>
         </tbody>
+        <%})%>
     </table>
 
     <br><br>

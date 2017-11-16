@@ -174,9 +174,61 @@ return res.render('buscarHistoriaC');
 
   },
 
+  resultadoBuscarHistoriaCardio : function(req,res){
+
+
+
+    connection.query("SELECT antecedente_inf.*, antecedente_cardiologo.*, alergeno.* FROM persona INNER JOIN paciente ON persona.idPersona = paciente.idPersona INNER JOIN informe ON paciente.idPaciente=informe.idPaciente INNER JOIN antecedente_cardiologo ON informe.idInforme=antecedente_cardiologo.idInforme INNER JOIN antecedente_inf ON antecedente_cardiologo.idAntecedente = antecedente_inf.idAntecedente_Inf INNER JOIN rel_antecedente_alergeno ON antecedente_inf.idAntecedente_Inf = rel_antecedente_alergeno.idAntecedente INNER JOIN alergeno ON rel_antecedente_alergeno.idAlergeno = alergeno.idAlergeno WHERE persona.Cedula ="+req.body.cedula)
+    .then(json1=>{
+      var prueba=json1[0];
+      console.log(prueba[0]);
+    
+      connection.query("SELECT informe.*, i_cardiologico.*, enfermedad.*, medicamento.* from persona inner join paciente on persona.idPersona = paciente.idPersona inner join informe on paciente.idPaciente = informe.idPaciente inner join i_cardiologico on informe.idInforme = i_cardiologico.idInforme  inner join rel_inf_enfermedad on i_cardiologico.idInforme = rel_inf_enfermedad.idInforme inner join enfermedad on rel_inf_enfermedad.idEnfermedad = enfermedad.idEnfermedad inner join rel_inf_medicamento on rel_inf_enfermedad.idInforme = rel_inf_medicamento.idInforme inner join medicamento on rel_inf_medicamento.idMedicamento = medicamento.idMedicamento where persona.Cedula = "+req.body.cedula)
+      .then(json2=>{
+        console.log(json2);
+
+        res.render('resultadoBuscarHistoriaCardio',{
+
+          resultado1 : prueba,
+          resultado2 : json2[0]
+
+        });
+
+
+      })
+
+    });
+
+
+  },
+
   buscarHistoriaO : function(req,res){
 
     return res.render('buscarHistoriaO');
+  },
+
+  resultadoBuscarHistoriaOftalm : function(req,res){
+
+    connection.query("SELECT antecedente_inf.*, antecedente_oftalmologo.*, alergeno.* FROM persona INNER JOIN paciente ON persona.idPersona = paciente.idPersona INNER JOIN informe ON paciente.idPaciente=informe.idPaciente INNER JOIN antecedente_oftalmologo ON informe.idInforme=antecedente_oftalmologo.idInforme INNER JOIN antecedente_inf ON antecedente_oftalmologo.idAntecedente = antecedente_inf.idAntecedente_Inf INNER JOIN rel_antecedente_alergeno ON antecedente_inf.idAntecedente_Inf = rel_antecedente_alergeno.idAntecedente INNER JOIN alergeno ON rel_antecedente_alergeno.idAlergeno = alergeno.idAlergeno WHERE persona.Cedula ="+req.body.cedula)
+    .then(json1=>{
+      var prueba=json1[0];
+      console.log(prueba[0]);
+    
+      connection.query("SELECT informe.*, i_oftalmologo.*, enfermedad.*, medicamento.* from persona inner join paciente on persona.idPersona = paciente.idPersona inner join informe on paciente.idPaciente = informe.idPaciente inner join i_oftalmologo on informe.idInforme = i_oftalmologo.idInforme  inner join rel_inf_enfermedad on i_oftalmologo.idInforme = rel_inf_enfermedad.idInforme inner join enfermedad on rel_inf_enfermedad.idEnfermedad = enfermedad.idEnfermedad inner join rel_inf_medicamento on rel_inf_enfermedad.idInforme = rel_inf_medicamento.idInforme inner join medicamento on rel_inf_medicamento.idMedicamento = medicamento.idMedicamento where persona.Cedula = "+req.body.cedula)
+      .then(json2=>{
+        console.log(json2);
+
+        res.render('resultadoBuscarHistoriaOftalm',{
+
+          resultado1 : prueba,
+          resultado2 : json2[0]
+
+        });
+
+
+      })
+
+    });
   },
 
   buscarHistoriaP : function(req,res){
@@ -185,18 +237,265 @@ return res.render('buscarHistoriaC');
 
   },
 
+  resultadoBuscarHistoriaPed : function(req,res){
+
+    connection.query("SELECT antecedente_inf.*, antecedente_pediatrico.*, alergeno.* FROM persona INNER JOIN paciente ON persona.idPersona = paciente.idPersona INNER JOIN informe ON paciente.idPaciente=informe.idPaciente INNER JOIN antecedente_pediatrico ON informe.idInforme=antecedente_pediatrico.idInforme INNER JOIN antecedente_inf ON antecedente_pediatrico.idAntecedente = antecedente_inf.idAntecedente_Inf INNER JOIN rel_antecedente_alergeno ON antecedente_inf.idAntecedente_Inf = rel_antecedente_alergeno.idAntecedente INNER JOIN alergeno ON rel_antecedente_alergeno.idAlergeno = alergeno.idAlergeno WHERE persona.Cedula ="+req.body.cedula)
+    .then(json1=>{
+      var prueba=json1[0];
+      console.log(prueba[0]);
+    
+      connection.query("SELECT informe.*, i_pediatra.*, enfermedad.*, medicamento.* from persona inner join paciente on persona.idPersona = paciente.idPersona inner join informe on paciente.idPaciente = informe.idPaciente inner join i_pediatra on informe.idInforme = i_pediatra.idInforme  inner join rel_inf_enfermedad on i_pediatra.idInforme = rel_inf_enfermedad.idInforme inner join enfermedad on rel_inf_enfermedad.idEnfermedad = enfermedad.idEnfermedad inner join rel_inf_medicamento on rel_inf_enfermedad.idInforme = rel_inf_medicamento.idInforme inner join medicamento on rel_inf_medicamento.idMedicamento = medicamento.idMedicamento where persona.Cedula = "+req.body.cedula)
+      .then(json2=>{
+        console.log(json2);
+
+        res.render('resultadoBuscarHistoriaPed',{
+
+          resultado1 : prueba,
+          resultado2 : json2[0]
+
+        });
+
+
+      })
+
+    });
+  },
+
   crearHistoriaPediatrica : function(req,res){
 
     return res.render('crearHistoriaPediatrica');
+  },
+
+  crearHistoriaPediatricaP : function(req,res){
+
+  Persona.findOne({
+
+    where : {
+
+      Cedula : req.body.cedulaPac
+    }
+
+  }).then(persona1=>{
+
+    Paciente.findOne({
+
+      where : {
+
+        idPersona : persona1.dataValues.idPersona
+      }
+    }).then(paciente =>{
+
+
+      Persona.findOne({
+
+        where : {
+
+          Cedula : req.body.cedulaMed
+
+        }
+
+      }).then(persona2 =>{
+
+        Medico.findOne({
+
+          where : {
+
+            idPersona : persona2.dataValues.idPersona
+
+          }
+
+        }).then(medico =>{
+
+          connection.query("INSERT INTO informe (idPaciente, Sintoma, Diagnostico, Instruccion, Fecha) values ("+paciente.dataValues.idPaciente+", '"+req.body.sintoma+"', '"+req.body.diagnostico+"', '"+req.body.instrucc+"', '"+req.body.fecha+"')")
+          .then(json1=>{
+
+            var idInforme=json1[0];
+
+            connection.query("INSERT INTO i_pediatra (idInforme, idMedico, Peso, Altura) VALUES ("+idInforme+", "+medico.dataValues.idMedico+", "+req.body.peso+", "+req.body.estatura+")")
+            .then(json2=>{
+
+              connection.query("INSERT INTO antecedente_inf (TipoAntecedente, NroIntervenciones) VALUES ('"+req.body.tipoAntec+"', "+req.body.intervenc+")")
+              .then(json3=>{
+
+                var idAntecedente= json3[0];
+
+                connection.query("INSERT INTO antecedente_pediatrico (idAntecedente, idInforme, Vacuna, Asmatico) VALUES ("+idAntecedente+", "+idInforme+", '"+req.body.vacuna+"', '"+req.body.asmatico+"')")
+                .then(fin=>{
+
+                  res.send("Se ha creado una nueva historia médica exitosamente");
+                })
+                
+              })
+            })
+
+          })
+        })
+
+      })
+
+    })
+
+  });
+
   },
 
    crearHistoriaCardio : function(req,res){
 
     return res.render('crearHistoriaCardio');
   },
+
+  crearHistoriaCardioP : function(req,res){
+
+
+Persona.findOne({
+
+    where : {
+
+      Cedula : req.body.cedulaPac
+    }
+
+  }).then(persona1=>{
+
+    Paciente.findOne({
+
+      where : {
+
+        idPersona : persona1.dataValues.idPersona
+      }
+    }).then(paciente =>{
+
+
+      Persona.findOne({
+
+        where : {
+
+          Cedula : req.body.cedulaMed
+
+        }
+
+      }).then(persona2 =>{
+
+        Medico.findOne({
+
+          where : {
+
+            idPersona : persona2.dataValues.idPersona
+
+          }
+
+        }).then(medico =>{
+
+          connection.query("INSERT INTO informe (idPaciente, Sintoma, Diagnostico, Instruccion, Fecha) values ("+paciente.dataValues.idPaciente+", '"+req.body.sintoma+"', '"+req.body.diagnostico+"', '"+req.body.instrucc+"', '"+req.body.fecha+"')")
+          .then(json1=>{
+
+            var idInforme=json1[0];
+
+            connection.query("INSERT INTO i_cardiologico (idInforme, idMedico, PresionArterial, Pulso) VALUES ("+idInforme+", "+medico.dataValues.idMedico+", '"+req.body.presion+"', '"+req.body.pulso+"')")
+            .then(json2=>{
+
+              connection.query("INSERT INTO antecedente_inf (TipoAntecedente, NroIntervenciones) VALUES ('"+req.body.tipoAntec+"', "+req.body.intervenc+")")
+              .then(json3=>{
+
+                var idAntecedente= json3[0];
+
+                connection.query("INSERT INTO antecedente_cardiologo (idAntecedente, idInforme, Cigarrillos, Hipertenso, Diabetico) VALUES ("+idAntecedente+", "+idInforme+", '"+req.body.cigarrillo+"', '"+req.body.Hipertenso+"', '"+req.body.diabetico+"')")
+                .then(fin=>{
+
+                  res.send("Se ha creado una nueva historia médica exitosamente");
+                })
+                
+              })
+            })
+
+          })
+        })
+
+      })
+
+    })
+
+  });
+
+    },
+
    crearHistoriaOftalm : function(req,res){
 
     return res.render('crearHistoriaOftalm');
+  },
+
+  crearHistoriaOftalmP : function(req,res){
+
+
+    Persona.findOne({
+
+    where : {
+
+      Cedula : req.body.cedulaPac
+    }
+
+  }).then(persona1=>{
+
+    Paciente.findOne({
+
+      where : {
+
+        idPersona : persona1.dataValues.idPersona
+      }
+    }).then(paciente =>{
+
+
+      Persona.findOne({
+
+        where : {
+
+          Cedula : req.body.cedulaMed
+
+        }
+
+      }).then(persona2 =>{
+
+        Medico.findOne({
+
+          where : {
+
+            idPersona : persona2.dataValues.idPersona
+
+          }
+
+        }).then(medico =>{
+
+          connection.query("INSERT INTO informe (idPaciente, Sintoma, Diagnostico, Instruccion, Fecha) values ("+paciente.dataValues.idPaciente+", '"+req.body.sintoma+"', '"+req.body.diagnostico+"', '"+req.body.instrucc+"', '"+req.body.fecha+"')")
+          .then(json1=>{
+
+            var idInforme=json1[0];
+
+            connection.query("INSERT INTO i_oftalmologo (idInforme, idMedico, Grado_vision, Presion_intraocular) VALUES ("+idInforme+", "+medico.dataValues.idMedico+", '"+req.body.gradoVision+"', '"+req.body.presionIntra+"')")
+            .then(json2=>{
+
+              connection.query("INSERT INTO antecedente_inf (TipoAntecedente, NroIntervenciones) VALUES ('"+req.body.tipoAntec+"', "+req.body.intervenc+")")
+              .then(json3=>{
+
+                var idAntecedente= json3[0];
+
+                connection.query("INSERT INTO antecedente_oftalmologo (idAntecedente, idInforme, Formula, TipoLentes) VALUES ("+idAntecedente+", "+idInforme+", '"+req.body.formula+"', '"+req.body.tipoLentes+"')")
+                .then(fin=>{
+
+                  res.send("Se ha creado una nueva historia médica exitosamente");
+                })
+                
+              })
+            })
+
+          })
+        })
+
+      })
+
+    })
+
+  });
+
+
   },
 
   buscarFactura : function(req,res){
@@ -303,7 +602,7 @@ var respuesta=json[0];
 
               connection.query("INSERT INTO telefono_paciente (idPaciente, Telefono_paciente) values ("+respuesta+", "+req.body.tlfn+")").then(final=>{
 
-                res.send("Se ha insertado el paciente");
+                res.send("Se ha insertado el paciente exitosamente");
               })
 
 
@@ -543,6 +842,207 @@ resultado : respuesta
 
     });
 
+  },
+
+  crearInformePed : function(req, res){
+
+    res.render('crearInformePed');
+
+  },
+
+  crearInformePedP : function(req,res){
+
+    Persona.findOne({
+
+    where : {
+
+      Cedula : req.body.cedulaPac
+    }
+
+  }).then(persona1=>{
+
+    Paciente.findOne({
+
+      where : {
+
+        idPersona : persona1.dataValues.idPersona
+      }
+    }).then(paciente =>{
+
+
+      Persona.findOne({
+
+        where : {
+
+          Cedula : req.body.cedulaMed
+
+        }
+
+      }).then(persona2 =>{
+
+        Medico.findOne({
+
+          where : {
+
+            idPersona : persona2.dataValues.idPersona
+
+          }
+
+        }).then(medico =>{
+
+          connection.query("INSERT INTO informe (idPaciente, Sintoma, Diagnostico, Instruccion, Fecha) values ("+paciente.dataValues.idPaciente+", '"+req.body.sintoma+"', '"+req.body.diagnostico+"', '"+req.body.instrucc+"', '"+req.body.fecha+"')")
+          .then(json1=>{
+
+            var idInforme=json1[0];
+
+            connection.query("INSERT INTO i_pediatra (idInforme, idMedico, Peso, Altura) VALUES ("+idInforme+", "+medico.dataValues.idMedico+", "+req.body.peso+", "+req.body.estatura+")")
+            .then(json2=>{
+
+              res.send("Se ha creado un nuevo informe exitosamente");
+            })
+
+          })
+        })
+
+      })
+
+    })
+
+  });
+
+  },
+
+  crearInformeCardio : function(req,res){
+
+    res.render('crearInformeCardio');
+  },
+
+  crearInformeCardioP : function(req,res){
+
+    Persona.findOne({
+
+    where : {
+
+      Cedula : req.body.cedulaPac
+    }
+
+  }).then(persona1=>{
+
+    Paciente.findOne({
+
+      where : {
+
+        idPersona : persona1.dataValues.idPersona
+      }
+    }).then(paciente =>{
+
+
+      Persona.findOne({
+
+        where : {
+
+          Cedula : req.body.cedulaMed
+
+        }
+
+      }).then(persona2 =>{
+
+        Medico.findOne({
+
+          where : {
+
+            idPersona : persona2.dataValues.idPersona
+
+          }
+
+        }).then(medico =>{
+
+          connection.query("INSERT INTO informe (idPaciente, Sintoma, Diagnostico, Instruccion, Fecha) values ("+paciente.dataValues.idPaciente+", '"+req.body.sintoma+"', '"+req.body.diagnostico+"', '"+req.body.instrucc+"', '"+req.body.fecha+"')")
+          .then(json1=>{
+
+            var idInforme=json1[0];
+
+            connection.query("INSERT INTO i_cardiologico (idInforme, idMedico, PresionArterial, Pulso) VALUES ("+idInforme+", "+medico.dataValues.idMedico+", '"+req.body.presion+"', '"+req.body.pulso+"')")
+            .then(json2=>{
+
+                res.send("Se ha creado un nuevo informe exitosamente");
+            })
+
+          })
+        })
+
+      })
+
+    })
+
+  });
+
+  },
+
+  crearInformeOftalm : function(req,res){
+
+    res.render('crearInformeOftalm');
+  },
+
+  crearInformeOftalmP : function(req, res){
+
+      Persona.findOne({
+
+    where : {
+
+      Cedula : req.body.cedulaPac
+    }
+
+  }).then(persona1=>{
+
+    Paciente.findOne({
+
+      where : {
+
+        idPersona : persona1.dataValues.idPersona
+      }
+    }).then(paciente =>{
+
+
+      Persona.findOne({
+
+        where : {
+
+          Cedula : req.body.cedulaMed
+
+        }
+
+      }).then(persona2 =>{
+
+        Medico.findOne({
+
+          where : {
+
+            idPersona : persona2.dataValues.idPersona
+
+          }
+
+        }).then(medico =>{
+
+          connection.query("INSERT INTO informe (idPaciente, Sintoma, Diagnostico, Instruccion, Fecha) values ("+paciente.dataValues.idPaciente+", '"+req.body.sintoma+"', '"+req.body.diagnostico+"', '"+req.body.instrucc+"', '"+req.body.fecha+"')")
+          .then(json1=>{
+
+            var idInforme=json1[0];
+
+            connection.query("INSERT INTO i_oftalmologo (idInforme, idMedico, Grado_vision, Presion_intraocular) VALUES ("+idInforme+", "+medico.dataValues.idMedico+", '"+req.body.gradoVision+"', '"+req.body.presionIntra+"')")
+            .then(json2=>{
+
+                res.send("Se ha creado un nuevo informe exitosamente");
+            })
+
+          })
+        })
+
+      })
+
+    })
+
+  });
   }
 
 

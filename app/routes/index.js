@@ -19,12 +19,31 @@ app.get("/insertaPaciente", controllers.index.insertaPaciente);
 app.post("/insertaPaciente", controllers.index.insertaPacienteP);
 
 app.get('/buscarHistoriaC', controllers.index.buscarHistoriaC);
+app.post('/buscarHistoriaC',controllers.index.resultadoBuscarHistoriaCardio)
+
 app.get('/buscarHistoriaO', controllers.index.buscarHistoriaO);
+app.post('/buscarHistoriaO', controllers.index.resultadoBuscarHistoriaOftalm);
+
 app.get('/buscarHistoriaP', controllers.index.buscarHistoriaP);
+app.post('/buscarHistoriaP', controllers.index.resultadoBuscarHistoriaPed);
 
 app.get('/crearHistoriaPediatrica',controllers.index.crearHistoriaPediatrica);
+app.post('/crearHistoriaPediatrica',controllers.index.crearHistoriaPediatricaP);
+
 app.get('/crearHistoriaCardio', controllers.index.crearHistoriaCardio);
+app.post('/crearHistoriaCardio', controllers.index.crearHistoriaCardioP);
+
 app.get('/crearHistoriaOftalm', controllers.index.crearHistoriaOftalm);
+app.post('/crearHistoriaOftalm', controllers.index.crearHistoriaOftalmP);
+
+app.get('/crearInformePed', controllers.index.crearInformePed);
+app.post('/crearInformePed', controllers.index.crearInformePedP);
+
+app.get('/crearInformeCardio', controllers.index.crearInformeCardio);
+app.post('/crearInformeCardio',controllers.index.crearInformeCardioP);
+
+app.get('/crearInformeOftalm', controllers.index.crearInformeOftalm);
+app.post('crearInformeOftalm',controllers.index.crearHistoriaOftalmP);
 
 app.get('/buscarFactura', controllers.index.buscarFactura);
 
