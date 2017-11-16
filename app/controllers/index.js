@@ -18,7 +18,7 @@ var Medicamento = connection.import(path.join(process.cwd(), 'app', 'models', 'm
 var Factura = connection.import(path.join(process.cwd(), 'app', 'models', 'factura'));
 var TipoSangre = connection.import(path.join(process.cwd(), 'app', 'models', 'tiposangre'));
 var Telefono_paciente= connection.import(path.join(process.cwd(), 'app', 'models', 'telefono_paciente'));
-
+var Enfermedad = connection.import(path.join(process.cwd(), 'app', 'models', 'enfermedad'));
 
 
 
@@ -168,10 +168,35 @@ module.exports = {
     }
   },
 
-  buscarHistoria : function(req,res){
+  buscarHistoriaC : function(req,res){
 
-return res.render('buscarHistoria');
+return res.render('buscarHistoriaC');
 
+  },
+
+  buscarHistoriaO : function(req,res){
+
+    return res.render('buscarHistoriaO');
+  },
+
+  buscarHistoriaP : function(req,res){
+
+    return res.render('buscarHistoriaP');
+
+  },
+
+  crearHistoriaPediatrica : function(req,res){
+
+    return res.render('crearHistoriaPediatrica');
+  },
+
+   crearHistoriaCardio : function(req,res){
+
+    return res.render('crearHistoriaCardio');
+  },
+   crearHistoriaOftalm : function(req,res){
+
+    return res.render('crearHistoriaOftalm');
   },
 
   buscarFactura : function(req,res){
@@ -451,6 +476,74 @@ resultado : respuesta
 
   },
 
+  verEnfermedades : function(req,res){
+
+
+    Enfermedad.findAll().then(enfermedades=>{
+
+      console.log(enfermedades);
+
+      res.render('verEnfermedades', {
+
+        resultado : enfermedades
+
+      });
+
+    })
+
+  }, 
+
+  verMedicamentos : function(req, res){
+
+  Medicamento.findAll().then(medicamento=>{
+
+      console.log(medicamento);
+
+      res.render('verMedicamentos', {
+
+        resultado : medicamento
+
+      });
+
+    })
+
+
+
+  },
+
+  modificarMedicamentos : function(req,res){
+
+
+    res.render('resultadoModificarMedicamentos');
+  },
+
+
+
+  modificarMedicamentosP : function(req, res){
+
+
+    Medicamento.findOne({
+
+      where : {
+
+      NombreM : req.body.medicamento
+      }
+    }).then(medicamento=>{
+      console.log(medicamento);
+
+      medicamento.updateAttributes({
+
+        Equivalente: req.body.equivalente
+
+      }).then(resultado=>{
+
+        res.send("Se ha modificado el medicamento exitosamente");
+
+      })
+
+    });
+
+  }
 
 
 }

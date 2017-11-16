@@ -18,7 +18,13 @@ app.get("/insertaPaciente", controllers.index.insertaPaciente);
 
 app.post("/insertaPaciente", controllers.index.insertaPacienteP);
 
-app.get('/buscarHistoria', controllers.index.buscarHistoria);
+app.get('/buscarHistoriaC', controllers.index.buscarHistoriaC);
+app.get('/buscarHistoriaO', controllers.index.buscarHistoriaO);
+app.get('/buscarHistoriaP', controllers.index.buscarHistoriaP);
+
+app.get('/crearHistoriaPediatrica',controllers.index.crearHistoriaPediatrica);
+app.get('/crearHistoriaCardio', controllers.index.crearHistoriaCardio);
+app.get('/crearHistoriaOftalm', controllers.index.crearHistoriaOftalm);
 
 app.get('/buscarFactura', controllers.index.buscarFactura);
 
@@ -39,6 +45,16 @@ app.post('/citasdePacientes',controllers.index.citasdePacientesP);
 app.get('/crearCitas', controllers.index.crearCitas);
 
 app.post('/crearCitas',controllers.index.crearCitasP);
+
+app.get('/verEnfermedades',controllers.index.verEnfermedades);
+
+app.get('/verMedicamentos',controllers.index.verMedicamentos);
+
+app.get('/modificarMedicamentos',controllers.index.modificarMedicamentos);
+
+app.post('/modificarMedicamentos',controllers.index.modificarMedicamentosP);
+
+
 
 }
 

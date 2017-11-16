@@ -1,4 +1,3 @@
-
 <% include partials/header %>
 
 <nav class="white" role="navigation">
@@ -29,45 +28,29 @@
     <div class="parallax"><img src="medico.jpg" alt="Unsplashed background img 1"></div>
   </div>
 
-	<h2 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h2>
+<h3 style="background-color:rgba(199, 231, 244, 0.73); font-family:sans-serif; color: #000000; text-align:center;"> Pacientes</h3>
 
-	<table class="striped bordered">
-        <thead>
-          <tr>
-              	<th>Tipo de Antecedente</th>
-				<th>Vacuna</th> 
-				<th>Asmático</th>
-				<th>Alergia</th>
-				<th>Fuma</th>  
-				<th>Diabético</th> 
-				<th>Hipertenso</th>
-				<th>Tipo de lentes</th>
-				<th>Fórmula</th> 
-				<th>Intervenciones quirúrgica</th> 
- 
-          </tr>
-        </thead>
+    <h4 style=" font-family:sans-serif; color: DodgerBlue;"><b>Buscar</b></h4>
 
-        <tbody>
-          <tr>
-            <td>resultado.Cedula</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-        </tbody>
-    </table>
+      <form class="col s12"; method="post" action="/modificarMedicamentos">
 
-    <footer class="page-footer blue">
+      <div class="row center">
+        
+        <div class="input-field col s6">
+          <input name="medicamento" type="text" class="validate">
+          <label for="medicamento">Nombre del medicamento</label>
+        </div>
+      </div>
+
+			<div class="row center">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+           <i class="material-icons right">send</i>
+        </button>               
+      </div>
+			</form> 
+
+
+       <footer class="page-footer blue">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
@@ -82,9 +65,11 @@
         </div>
      </footer>
 
-  <!--  Scripts-->
+   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+
+
 
 <% include partials/footer %>
